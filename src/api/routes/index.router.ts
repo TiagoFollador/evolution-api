@@ -1,28 +1,19 @@
 import { authGuard } from '@api/guards/auth.guard';
 import { instanceExistsGuard, instanceLoggedGuard } from '@api/guards/instance.guard';
 import { ChannelRouter } from '@api/integrations/channel/channel.router';
-import { ChatbotRouter } from '@api/integrations/chatbot/chatbot.router';
 import { EventRouter } from '@api/integrations/event/event.router';
 import { StorageRouter } from '@api/integrations/storage/storage.router';
 import { waMonitor } from '@api/server.module';
-import { configService, Database, Facebook } from '@config/env.config';
-import { fetchLatestWaWebVersion } from '@utils/fetchLatestWaWebVersion';
+import { configService, Database } from '@config/env.config';
 import { NextFunction, Request, Response, Router } from 'express';
 import fs from 'fs';
-import mimeTypes from 'mime-types';
-import path from 'path';
 
-import { BusinessRouter } from './business.router';
-import { CallRouter } from './call.router';
 import { ChatRouter } from './chat.router';
-import { GroupRouter } from './group.router';
 import { InstanceRouter } from './instance.router';
-import { LabelRouter } from './label.router';
 import { ProxyRouter } from './proxy.router';
 import { MessageRouter } from './sendMessage.router';
 import { SettingsRouter } from './settings.router';
 import { TemplateRouter } from './template.router';
-import { ViewsRouter } from './view.router';
 
 enum HttpStatus {
   OK = 200,
@@ -31,6 +22,7 @@ enum HttpStatus {
   FORBIDDEN = 403,
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
+  GONE = 410,
   INTERNAL_SERVER_ERROR = 500,
 }
 
@@ -157,35 +149,49 @@ if (metricsConfig.ENABLED) {
   });
 }
 
-if (!serverConfig.DISABLE_MANAGER) router.use('/manager', new ViewsRouter().router);
+/**
+ * Surfaces removed in Phase 2. They answer 410 rather than 404 so an existing
+ * consumer gets told the endpoint is gone for good, not that it mistyped a URL.
+ *
+ * `/group`, `/label`, `/call`, `/business` and `/baileys` were WhatsApp Web
+ * only — no Meta channel exposes a usable group thread or socket passthrough.
+ * The chatbot surfaces are business domain, which a gateway does not own.
+ * `/manager` served the removed admin UI. `POST /verify-creds` returned a
+ * Facebook user token in the response body.
+ */
+const goneRoutes = [
+  '/group',
+  '/label',
+  '/call',
+  '/business',
+  '/baileys',
+  '/manager',
+  '/assets',
+  '/verify-creds',
+  '/chatwoot',
+  '/typebot',
+  '/openai',
+  '/dify',
+  '/flowise',
+  '/n8n',
+  '/evoai',
+  '/evolutionBot',
+  '/rabbitmq',
+  '/nats',
+  '/sqs',
+  '/pusher',
+  '/kafka',
+];
 
-router.get('/assets/*', (req, res) => {
-  const fileName = req.params[0];
-
-  // Security: Reject paths containing traversal patterns
-  if (!fileName || fileName.includes('..') || fileName.includes('\\') || path.isAbsolute(fileName)) {
-    return res.status(403).send('Forbidden');
-  }
-
-  const basePath = path.join(process.cwd(), 'manager', 'dist');
-  const assetsPath = path.join(basePath, 'assets');
-  const filePath = path.join(assetsPath, fileName);
-
-  // Security: Ensure the resolved path is within the assets directory
-  const resolvedPath = path.resolve(filePath);
-  const resolvedAssetsPath = path.resolve(assetsPath);
-
-  if (!resolvedPath.startsWith(resolvedAssetsPath + path.sep) && resolvedPath !== resolvedAssetsPath) {
-    return res.status(403).send('Forbidden');
-  }
-
-  if (fs.existsSync(resolvedPath)) {
-    res.set('Content-Type', mimeTypes.lookup(resolvedPath) || 'text/css');
-    res.send(fs.readFileSync(resolvedPath));
-  } else {
-    res.status(404).send('File not found');
-  }
-});
+for (const gone of goneRoutes) {
+  router.use(gone, (_req, res) =>
+    res.status(HttpStatus.GONE).json({
+      status: HttpStatus.GONE,
+      error: 'Gone',
+      message: `${gone} was removed in Nexo API. See the migration notes in the README.`,
+    }),
+  );
+}
 
 router
   .get('/', async (req, res) => {
@@ -194,34 +200,17 @@ router
       message: 'Welcome to the Nexo API, it is working!',
       version: packageJson.version,
       clientName: databaseConfig.CONNECTION.CLIENT_NAME,
-      manager: !serverConfig.DISABLE_MANAGER ? `${req.protocol}://${req.get('host')}/manager` : undefined,
       poweredBy: 'Evolution API',
-      whatsappWebVersion: (await fetchLatestWaWebVersion({})).version.join('.'),
-    });
-  })
-  .post('/verify-creds', authGuard['apikey'], async (req, res) => {
-    const facebookConfig = configService.get<Facebook>('FACEBOOK');
-    return res.status(HttpStatus.OK).json({
-      status: HttpStatus.OK,
-      message: 'Credentials are valid',
-      facebookAppId: facebookConfig.APP_ID,
-      facebookConfigId: facebookConfig.CONFIG_ID,
-      facebookUserToken: facebookConfig.USER_TOKEN,
     });
   })
   .use('/instance', new InstanceRouter(configService, ...guards).router)
   .use('/message', new MessageRouter(...guards).router)
-  .use('/call', new CallRouter(...guards).router)
   .use('/chat', new ChatRouter(...guards).router)
-  .use('/business', new BusinessRouter(...guards).router)
-  .use('/group', new GroupRouter(...guards).router)
   .use('/template', new TemplateRouter(configService, ...guards).router)
   .use('/settings', new SettingsRouter(...guards).router)
   .use('/proxy', new ProxyRouter(...guards).router)
-  .use('/label', new LabelRouter(...guards).router)
-  .use('', new ChannelRouter(configService, ...guards).router)
+  .use('', new ChannelRouter(configService).router)
   .use('', new EventRouter(configService, ...guards).router)
-  .use('', new ChatbotRouter(...guards).router)
   .use('', new StorageRouter(...guards).router);
 
 export { HttpStatus, router };

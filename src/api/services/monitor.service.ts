@@ -1,13 +1,11 @@
 import { InstanceDto } from '@api/dto/instance.dto';
-import { ProviderFiles } from '@api/provider/sessions';
 import { PrismaRepository } from '@api/repository/repository.service';
 import { channelController } from '@api/server.module';
 import { Events, Integration } from '@api/types/wa.types';
-import { CacheConf, Chatwoot, ConfigService, Database, DelInstance, ProviderSession } from '@config/env.config';
+import { CacheConf, ConfigService, Database, DelInstance } from '@config/env.config';
 import { Logger } from '@config/logger.config';
-import { INSTANCE_DIR, STORE_DIR } from '@config/path.config';
+import { INSTANCE_DIR } from '@config/path.config';
 import { NotFoundException } from '@exceptions';
-import { execFileSync } from 'child_process';
 import EventEmitter2 from 'eventemitter2';
 import { rmSync } from 'fs';
 import { join } from 'path';
@@ -19,18 +17,13 @@ export class WAMonitoringService {
     private readonly eventEmitter: EventEmitter2,
     private readonly configService: ConfigService,
     private readonly prismaRepository: PrismaRepository,
-    private readonly providerFiles: ProviderFiles,
     private readonly cache: CacheService,
-    private readonly chatwootCache: CacheService,
-    private readonly baileysCache: CacheService,
   ) {
     this.removeInstance();
     this.noConnection();
 
     Object.assign(this.db, configService.get<Database>('DATABASE'));
     Object.assign(this.redis, configService.get<CacheConf>('CACHE'));
-
-    (this as any).providerSession = Object.freeze(configService.get<ProviderSession>('PROVIDER'));
   }
 
   private readonly db: Partial<Database> = {};
@@ -39,8 +32,6 @@ export class WAMonitoringService {
   private readonly logger = new Logger('WAMonitoringService');
   public readonly waInstances: Record<string, any> = {};
   private readonly delInstanceTimeouts: Record<string, NodeJS.Timeout> = {};
-
-  private readonly providerSession: ProviderSession;
 
   public delInstanceTime(instance: string) {
     const time = this.configService.get<DelInstance>('DEL_INSTANCE');
@@ -109,11 +100,7 @@ export class WAMonitoringService {
     const instances = await this.prismaRepository.instance.findMany({
       where,
       include: {
-        Chatwoot: true,
         Proxy: true,
-        Rabbitmq: true,
-        Nats: true,
-        Sqs: true,
         Websocket: true,
         Setting: true,
         _count: {
@@ -182,18 +169,9 @@ export class WAMonitoringService {
         await this.cache.delete(instanceDbId);
       }
     }
-
-    if (this.providerSession?.ENABLED) {
-      await this.providerFiles.removeSession(instanceName);
-    }
   }
 
   public async cleaningStoreData(instanceName: string) {
-    if (this.configService.get<Chatwoot>('CHATWOOT').ENABLED) {
-      const instancePath = join(STORE_DIR, 'chatwoot', instanceName);
-      execFileSync('rm', ['-rf', instancePath]);
-    }
-
     const instance = await this.prismaRepository.instance.findFirst({
       where: { name: instanceName },
     });
@@ -226,9 +204,7 @@ export class WAMonitoringService {
 
   public async loadInstance() {
     try {
-      if (this.providerSession?.ENABLED) {
-        await this.loadInstancesFromProvider();
-      } else if (this.db.SAVE_DATA.INSTANCE) {
+      if (this.db.SAVE_DATA.INSTANCE) {
         await this.loadInstancesFromDatabasePostgres();
       } else if (this.redis.REDIS.ENABLED && this.redis.REDIS.SAVE_INSTANCES) {
         await this.loadInstancesFromRedis();
@@ -276,9 +252,6 @@ export class WAMonitoringService {
       eventEmitter: this.eventEmitter,
       prismaRepository: this.prismaRepository,
       cache: this.cache,
-      chatwootCache: this.chatwootCache,
-      baileysCache: this.baileysCache,
-      providerFiles: this.providerFiles,
     });
 
     if (!instance) return;
@@ -364,31 +337,6 @@ export class WAMonitoringService {
     );
   }
 
-  private async loadInstancesFromProvider() {
-    const [instances] = await this.providerFiles.allInstances();
-
-    if (!instances?.data) {
-      return;
-    }
-
-    await Promise.all(
-      instances?.data?.map(async (instanceId: string) => {
-        const instance = await this.prismaRepository.instance.findUnique({
-          where: { id: instanceId },
-        });
-
-        this.setInstance({
-          instanceId: instance.id,
-          instanceName: instance.name,
-          integration: instance.integration,
-          token: instance.token,
-          businessId: instance.businessId,
-          connectionStatus: instance.connectionStatus as any, // Pass connection status
-        });
-      }),
-    );
-  }
-
   private removeInstance() {
     this.eventEmitter.on('remove.instance', async (instanceName: string) => {
       try {
@@ -413,10 +361,6 @@ export class WAMonitoringService {
         await this.waInstances[instanceName]?.sendDataWebhook(Events.LOGOUT_INSTANCE, null);
 
         this.clearDelInstanceTime(instanceName);
-
-        if (this.configService.get<Chatwoot>('CHATWOOT').ENABLED) {
-          this.waInstances[instanceName]?.clearCacheChatwoot();
-        }
 
         this.cleaningUp(instanceName);
       } finally {

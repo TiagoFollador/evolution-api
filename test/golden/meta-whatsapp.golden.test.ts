@@ -15,6 +15,14 @@ import { createMetaHarness } from '../support/metaChannelHarness';
  *
  * Phase 5 fixes those bugs. The snapshots are expected to be rewritten then,
  * in the same commit as the fix, and reviewed as part of it.
+ *
+ * One defect this suite structurally CANNOT catch, found by a live end-to-end
+ * replay instead: `whatsapp.business.service.ts` calls
+ * `this.prismaRepository.contact.create(...)` without awaiting it. A
+ * PrismaPromise is lazy — it never issues a query unless awaited — so new
+ * contacts are silently never persisted. The recording double here resolves
+ * eagerly, so the write shows up in the snapshot as if it happened. Phase 5
+ * must add the `await` and cover it with a test that uses a real database.
  */
 
 const FIXTURE_DIR = join(__dirname, '..', 'fixtures', 'meta', 'whatsapp');

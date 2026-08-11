@@ -1,6 +1,5 @@
 import 'express-async-errors';
 
-import { GetParticipant, GroupInvite } from '@api/dto/group.dto';
 import { InstanceDto } from '@api/dto/instance.dto';
 import { Logger } from '@config/logger.config';
 import { BadRequestException } from '@exceptions';
@@ -119,87 +118,6 @@ export abstract class RouterBroker {
 
     const ref = new ClassRef();
 
-    Object.assign(ref, body);
-
-    const v = validate(ref, schema);
-
-    if (!v.valid) {
-      const message: any[] = v.errors.map(({ property, stack, schema }) => {
-        let message: string;
-        if (schema['description']) {
-          message = schema['description'];
-        } else {
-          message = stack.replace('instance.', '');
-        }
-        return {
-          property: property.replace('instance.', ''),
-          message,
-        };
-      });
-      logger.error([...message]);
-      throw new BadRequestException(...message);
-    }
-
-    return await execute(instance, ref);
-  }
-
-  public async inviteCodeValidate<T>(args: DataValidate<T>) {
-    const { request, ClassRef, schema, execute } = args;
-
-    const inviteCode = request.query as unknown as GroupInvite;
-
-    if (!inviteCode?.inviteCode) {
-      throw new BadRequestException(
-        'The group invite code id needs to be informed in the query',
-        'ex: "inviteCode=F1EX5QZxO181L3TMVP31gY" (Obtained from group join link)',
-      );
-    }
-
-    const instance = request.params as unknown as InstanceDto;
-    const body = request.body;
-
-    const ref = new ClassRef();
-
-    Object.assign(body, inviteCode);
-    Object.assign(ref, body);
-
-    const v = validate(ref, schema);
-
-    if (!v.valid) {
-      const message: any[] = v.errors.map(({ property, stack, schema }) => {
-        let message: string;
-        if (schema['description']) {
-          message = schema['description'];
-        } else {
-          message = stack.replace('instance.', '');
-        }
-        return {
-          property: property.replace('instance.', ''),
-          message,
-        };
-      });
-      logger.error([...message]);
-      throw new BadRequestException(...message);
-    }
-
-    return await execute(instance, ref);
-  }
-
-  public async getParticipantsValidate<T>(args: DataValidate<T>) {
-    const { request, ClassRef, schema, execute } = args;
-
-    const getParticipants = request.query as unknown as GetParticipant;
-
-    if (!getParticipants?.getParticipants) {
-      throw new BadRequestException('The getParticipants needs to be informed in the query');
-    }
-
-    const instance = request.params as unknown as InstanceDto;
-    const body = request.body;
-
-    const ref = new ClassRef();
-
-    Object.assign(body, getParticipants);
     Object.assign(ref, body);
 
     const v = validate(ref, schema);

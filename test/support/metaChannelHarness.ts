@@ -50,23 +50,9 @@ export async function createMetaHarness(seed: PrismaSeed = {}): Promise<Harness>
   // when the module graph (and its config singleton) is constructed.
   const { BusinessStartupService } = await import('@api/integrations/channel/meta/whatsapp.business.service');
 
-  // The Meta channel awaits the app-wide `chatbotController` singleton, which
-  // carries a real PrismaClient and would try to reach a database. Neutralise
-  // it so the suite stays hermetic. Phase 2 deletes the call site entirely.
-  const serverModule: any = await import('@api/server.module');
-  serverModule.chatbotController.emit = async () => undefined;
-
   const { writes, repository } = createRecordingPrisma(seed);
 
-  const service: any = new BusinessStartupService(
-    configService,
-    new EventEmitter2(),
-    repository as any,
-    noopCache(),
-    noopCache(),
-    noopCache(),
-    null as any,
-  );
+  const service: any = new BusinessStartupService(configService, new EventEmitter2(), repository as any, noopCache());
 
   service.setInstance({
     instanceName: INSTANCE_NAME,

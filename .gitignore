@@ -43,5 +43,3 @@ lerna-debug.log*
 .DS_Store
 *.DS_Store
 .tool-versions
-
-/prisma/migrations/*
