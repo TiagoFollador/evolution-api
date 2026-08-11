@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
+import { ConnectionState } from '@api/types/wire.types';
 import { JsonValue } from '@prisma/client/runtime/library';
-import { AuthenticationState, WAConnectionState } from 'baileys';
 
 export enum Events {
   APPLICATION_STARTUP = 'application.startup',
@@ -50,7 +50,9 @@ export declare namespace wa {
     id?: string;
     qrcode?: QrCode;
     pairingCode?: string;
-    authState?: { state: AuthenticationState; saveCreds: () => void };
+    // Baileys-shaped credential store; only the WhatsApp Web channel reads it,
+    // and both go away together in Phase 2.
+    authState?: { state: any; saveCreds: () => void };
     name?: string;
     ownerJid?: string;
     wuid?: string;
@@ -127,7 +129,7 @@ export declare namespace wa {
 
   export type StateConnection = {
     instance?: string;
-    state?: WAConnectionState | 'refused';
+    state?: ConnectionState | 'refused';
     statusReason?: number;
   };
 

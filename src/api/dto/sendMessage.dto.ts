@@ -1,13 +1,13 @@
-import { proto, WAPresence } from 'baileys';
+import { MessageContentRef, MessageKeyRef, PresenceState } from '@api/types/wire.types';
 
 export class Quoted {
-  key: proto.IMessageKey;
-  message: proto.IMessage;
+  key: MessageKeyRef;
+  message: MessageContentRef;
 }
 
 export class Options {
   delay?: number;
-  presence?: WAPresence;
+  presence?: PresenceState;
   quoted?: Quoted;
   linkPreview?: boolean;
   encoding?: boolean;
@@ -164,6 +164,6 @@ export class SendContactDto extends Metadata {
 }
 
 export class SendReactionDto {
-  key: proto.IMessageKey;
+  key: MessageKeyRef;
   reaction: string;
 }

@@ -1,6 +1,6 @@
 import { ICache } from '@api/abstract/abstract.cache';
 import { Logger } from '@config/logger.config';
-import { BufferJSON } from 'baileys';
+import { bufferJson } from '@utils/bufferJson';
 
 export class CacheService {
   private readonly logger = new Logger('CacheService');
@@ -28,7 +28,7 @@ export class CacheService {
       const data = await this.cache.hGet(key, field);
 
       if (data) {
-        return JSON.parse(data, BufferJSON.reviver);
+        return JSON.parse(data, bufferJson.reviver);
       }
 
       return null;
@@ -50,7 +50,7 @@ export class CacheService {
       return;
     }
     try {
-      const json = JSON.stringify(value, BufferJSON.replacer);
+      const json = JSON.stringify(value, bufferJson.replacer);
 
       await this.cache.hSet(key, field, json);
     } catch (error) {

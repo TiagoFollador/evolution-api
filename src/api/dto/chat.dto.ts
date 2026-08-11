@@ -1,11 +1,12 @@
 import {
-  proto,
-  WAPresence,
-  WAPrivacyGroupAddValue,
-  WAPrivacyOnlineValue,
-  WAPrivacyValue,
-  WAReadReceiptsValue,
-} from 'baileys';
+  MessageContentRef,
+  MessageKeyRef,
+  PresenceState,
+  PrivacyGroupAddValue,
+  PrivacyOnlineValue,
+  PrivacyValue,
+  ReadReceiptsValue,
+} from '@api/types/wire.types';
 
 export class OnWhatsAppDto {
   constructor(
@@ -18,7 +19,7 @@ export class OnWhatsAppDto {
 }
 
 export class getBase64FromMediaMessageDto {
-  message: proto.WebMessageInfo;
+  message: MessageContentRef;
   convertToMp4?: boolean;
 }
 
@@ -87,12 +88,12 @@ export class MarkChatUnreadDto {
 }
 
 export class PrivacySettingDto {
-  readreceipts: WAReadReceiptsValue;
-  profile: WAPrivacyValue;
-  status: WAPrivacyValue;
-  online: WAPrivacyOnlineValue;
-  last: WAPrivacyValue;
-  groupadd: WAPrivacyGroupAddValue;
+  readreceipts: ReadReceiptsValue;
+  profile: PrivacyValue;
+  status: PrivacyValue;
+  online: PrivacyOnlineValue;
+  last: PrivacyValue;
+  groupadd: PrivacyGroupAddValue;
 }
 
 export class DeleteMessage {
@@ -103,7 +104,7 @@ export class DeleteMessage {
 }
 export class Options {
   delay?: number;
-  presence?: WAPresence;
+  presence?: PresenceState;
 }
 class OptionsMessage {
   options: Options;
@@ -113,13 +114,13 @@ export class Metadata extends OptionsMessage {
 }
 
 export class SendPresenceDto extends Metadata {
-  presence: WAPresence;
+  presence: PresenceState;
   delay: number;
 }
 
 export class UpdateMessageDto extends Metadata {
   number: string;
-  key: proto.IMessageKey;
+  key: MessageKeyRef;
   text: string;
 }
 

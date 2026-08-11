@@ -1,6 +1,6 @@
 import { IntegrationDto } from '@api/integrations/integration.dto';
+import { PresenceState } from '@api/types/wire.types';
 import { JsonValue } from '@prisma/client/runtime/library';
-import { WAPresence } from 'baileys';
 
 export class InstanceDto extends IntegrationDto {
   instanceName: string;
@@ -55,5 +55,5 @@ export class InstanceDto extends IntegrationDto {
 }
 
 export class SetPresenceDto {
-  presence: WAPresence;
+  presence: PresenceState;
 }

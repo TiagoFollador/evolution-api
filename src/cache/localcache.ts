@@ -1,7 +1,7 @@
 import { ICache } from '@api/abstract/abstract.cache';
 import { CacheConf, CacheConfLocal, ConfigService } from '@config/env.config';
 import { Logger } from '@config/logger.config';
-import { BufferJSON } from 'baileys';
+import { bufferJson } from '@utils/bufferJson';
 import NodeCache from 'node-cache';
 
 export class LocalCache implements ICache {
@@ -56,7 +56,7 @@ export class LocalCache implements ICache {
       const data = LocalCache.localCache.get(this.buildKey(key)) as object;
 
       if (data && field in data) {
-        return JSON.parse(data[field], BufferJSON.reviver);
+        return JSON.parse(data[field], bufferJson.reviver);
       }
 
       return null;
@@ -67,7 +67,7 @@ export class LocalCache implements ICache {
 
   async hSet(key: string, field: string, value: any) {
     try {
-      const json = JSON.stringify(value, BufferJSON.replacer);
+      const json = JSON.stringify(value, bufferJson.replacer);
 
       let hash = LocalCache.localCache.get(this.buildKey(key));
 

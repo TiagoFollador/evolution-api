@@ -1,7 +1,7 @@
 import { ICache } from '@api/abstract/abstract.cache';
 import { CacheConf, CacheConfRedis, ConfigService } from '@config/env.config';
 import { Logger } from '@config/logger.config';
-import { BufferJSON } from 'baileys';
+import { bufferJson } from '@utils/bufferJson';
 import { RedisClientType } from 'redis';
 
 import { redisClient } from './rediscache.client';
@@ -31,7 +31,7 @@ export class RedisCache implements ICache {
       const data = await this.client.hGet(this.buildKey(key), field);
 
       if (data) {
-        return JSON.parse(data, BufferJSON.reviver);
+        return JSON.parse(data, bufferJson.reviver);
       }
 
       return null;
@@ -50,7 +50,7 @@ export class RedisCache implements ICache {
 
   async hSet(key: string, field: string, value: any) {
     try {
-      const json = JSON.stringify(value, BufferJSON.replacer);
+      const json = JSON.stringify(value, bufferJson.replacer);
 
       await this.client.hSet(this.buildKey(key), field, json);
     } catch (error) {
