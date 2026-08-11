@@ -1,0 +1,35 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ana Souza", "phone": "5511987654321" },
+                "wa_id": "5511987654321"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5511987654321",
+                "id": "wamid.TEXT0001",
+                "timestamp": "1754870400",
+                "type": "text",
+                "text": { "body": "Bom dia, gostaria de saber sobre o pedido." }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

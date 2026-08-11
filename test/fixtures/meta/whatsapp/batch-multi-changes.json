@@ -1,0 +1,61 @@
+{
+  "_comment": "Um entry com DOIS changes. meta.controller.ts:19,40 e connectToWhatsapp:128 leem apenas changes[0] — o segundo change é perdido silenciosamente.",
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ana Souza", "phone": "5511987654321" },
+                "wa_id": "5511987654321"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5511987654321",
+                "id": "wamid.CHANGES0001",
+                "timestamp": "1754871120",
+                "type": "text",
+                "text": { "body": "primeiro change" }
+              }
+            ]
+          }
+        },
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ana Souza", "phone": "5511987654321" },
+                "wa_id": "5511987654321"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5511987654321",
+                "id": "wamid.CHANGES0002",
+                "timestamp": "1754871121",
+                "type": "text",
+                "text": { "body": "segundo change — perdido hoje" }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

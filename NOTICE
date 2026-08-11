@@ -1,3 +1,16 @@
+Nexo API
+Copyright 2026 Tiago Follador
+
+Nexo API is a derivative work of Evolution API, and is distributed under the
+same license terms (see LICENSE).
+
+This system uses Evolution API.
+(Usage Notification Requirement, LICENSE clause 1.b)
+
+---
+
+Upstream attribution — retained per Apache License 2.0 section 4(d)
+
 Evolution API
 Copyright 2026 Evolution Foundation
 
@@ -10,10 +23,13 @@ Evolution Foundation. The Evolution API logo, wordmark, and visual identity
 are governed by the Trademark and Brand Assets Policy included in this
 repository (TRADEMARKS.md).
 
+"Nexo API" is not affiliated with, endorsed by, or sponsored by Evolution
+Foundation. The Evolution name and marks are used here solely for attribution.
+
 Third-party attributions
 
 This product includes software derived from CodeChat WhatsApp API
 (https://github.com/code-chat-br/whatsapp-api), originally licensed under MIT.
 The CodeChat project implemented the Baileys library
 (https://github.com/WhiskeySockets/Baileys), which Evolution API also uses for
-its WhatsApp Web integration.
+its WhatsApp Web integration. Nexo API removes the Baileys integration.

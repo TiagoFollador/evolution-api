@@ -877,9 +877,11 @@ export class ConfigService {
         PASSWORD: process.env?.METRICS_PASSWORD,
         ALLOWED_IPS: process.env?.METRICS_ALLOWED_IPS,
       },
+      // Nexo API never phones home. Kept as a permanent no-op until the last
+      // upstream caller of sendTelemetry is deleted in Phase 2.
       TELEMETRY: {
-        ENABLED: process.env?.TELEMETRY_ENABLED === undefined || process.env?.TELEMETRY_ENABLED === 'true',
-        URL: process.env?.TELEMETRY_URL,
+        ENABLED: false,
+        URL: undefined,
       },
       PROXY: {
         HOST: process.env?.PROXY_HOST,

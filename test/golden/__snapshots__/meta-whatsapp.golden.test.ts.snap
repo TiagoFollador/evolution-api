@@ -1,0 +1,995 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Meta WhatsApp channel — cross-contact batch > records cross-contact attribution under concurrent delivery 1`] = `
+[
+  {
+    "id": "wamid.BATCH0001",
+    "pushName": "Ana Souza",
+    "remoteJid": "5521999998888@s.whatsapp.net",
+  },
+  {
+    "id": "wamid.BATCH0002",
+    "pushName": "Bruno Lima",
+    "remoteJid": "5521999998888@s.whatsapp.net",
+  },
+]
+`;
+
+exports[`Meta WhatsApp channel — cross-contact batch > records how sequential webhooks from different contacts are attributed 1`] = `
+[
+  {
+    "fromMe": false,
+    "id": "wamid.TEXT0001",
+    "remoteJid": "5511987654321@s.whatsapp.net",
+  },
+  {
+    "fromMe": false,
+    "id": "wamid.CROSS0002",
+    "remoteJid": "5521999998888@s.whatsapp.net",
+  },
+]
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "audio" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.AUDIO0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "audioMessage": {
+            "id": "2234567890123456",
+            "mime_type": "audio/ogg; codecs=opus",
+            "ptt": true,
+            "sha256": "c1946ac92492d2347c6235b4d2611185",
+            "voice": true,
+          },
+        },
+        "messageTimestamp": 1754870520,
+        "messageType": "audioMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "batch-multi-changes" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.CHANGES0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "conversation": "primeiro change",
+        },
+        "messageTimestamp": 1754871120,
+        "messageType": "conversation",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.CHANGES0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "conversation": "primeiro change",
+          },
+          "messageTimestamp": 1754871120,
+          "messageType": "conversation",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "batch-multi-entry" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.BATCH0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "conversation": "mensagem da Ana",
+        },
+        "messageTimestamp": 1754871060,
+        "messageType": "conversation",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.BATCH0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "conversation": "mensagem da Ana",
+          },
+          "messageTimestamp": 1754871060,
+          "messageType": "conversation",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "button" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": {
+          "stanzaId": "wamid.OUTBOUND0002",
+        },
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.BUTTON0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "contextInfo": {
+            "stanzaId": "wamid.OUTBOUND0002",
+          },
+          "conversation": "Confirmar entrega",
+        },
+        "messageTimestamp": 1754870820,
+        "messageType": "buttonMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": {
+            "stanzaId": "wamid.OUTBOUND0002",
+          },
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.BUTTON0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "contextInfo": {
+              "stanzaId": "wamid.OUTBOUND0002",
+            },
+            "conversation": "Confirmar entrega",
+          },
+          "messageTimestamp": 1754870820,
+          "messageType": "buttonMessage",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "contacts" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.CONTACTS0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "contactMessage": {
+            "displayName": "Carlos Pereira",
+            "vcard": "BEGIN:VCARD
+VERSION:3.0
+N:Carlos Pereira
+FN:Carlos Pereira
+ORG:Transportadora Norte;
+EMAIL:carlos@transportadoranorte.com.br
+item1.TEL;waid=5511912345678:+55 11 91234-5678
+item1.X-ABLabel:Celular
+END:VCARD",
+          },
+        },
+        "messageTimestamp": 1754870700,
+        "messageType": "contactMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.CONTACTS0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "contactMessage": {
+              "displayName": "Carlos Pereira",
+              "vcard": "BEGIN:VCARD
+VERSION:3.0
+N:Carlos Pereira
+FN:Carlos Pereira
+ORG:Transportadora Norte;
+EMAIL:carlos@transportadoranorte.com.br
+item1.TEL;waid=5511912345678:+55 11 91234-5678
+item1.X-ABLabel:Celular
+END:VCARD",
+            },
+          },
+          "messageTimestamp": 1754870700,
+          "messageType": "contactMessage",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "image" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.IMAGE0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "imageMessage": {
+            "caption": "segue a foto da nota",
+            "id": "1234567890123456",
+            "mime_type": "image/jpeg",
+            "sha256": "b1946ac92492d2347c6235b4d2611184",
+          },
+        },
+        "messageTimestamp": 1754870460,
+        "messageType": "imageMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "interactive-reply" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": {
+          "stanzaId": "wamid.OUTBOUND0001",
+        },
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.INTERACTIVE0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "contextInfo": {
+            "stanzaId": "wamid.OUTBOUND0001",
+          },
+          "conversation": "Segunda via de boleto",
+        },
+        "messageTimestamp": 1754870760,
+        "messageType": "interactiveMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": {
+            "stanzaId": "wamid.OUTBOUND0001",
+          },
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.INTERACTIVE0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "contextInfo": {
+              "stanzaId": "wamid.OUTBOUND0001",
+            },
+            "conversation": "Segunda via de boleto",
+          },
+          "messageTimestamp": 1754870760,
+          "messageType": "interactiveMessage",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "location" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.LOCATION0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "locationMessage": {
+            "address": "Praça da Sé - Sé, São Paulo - SP",
+            "degreesLatitude": -23.55052,
+            "degreesLongitude": -46.633308,
+            "name": "Praça da Sé",
+          },
+        },
+        "messageTimestamp": 1754870640,
+        "messageType": "locationMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.LOCATION0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "locationMessage": {
+              "address": "Praça da Sé - Sé, São Paulo - SP",
+              "degreesLatitude": -23.55052,
+              "degreesLongitude": -46.633308,
+              "name": "Praça da Sé",
+            },
+          },
+          "messageTimestamp": 1754870640,
+          "messageType": "locationMessage",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "reaction" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.REACTION0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "reactionMessage": {
+            "key": {
+              "id": "wamid.OUTBOUND0003",
+            },
+            "text": "👍",
+          },
+        },
+        "messageTimestamp": 1754870880,
+        "messageType": "reactionMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.REACTION0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "reactionMessage": {
+              "key": {
+                "id": "wamid.OUTBOUND0003",
+              },
+              "text": "👍",
+            },
+          },
+          "messageTimestamp": 1754870880,
+          "messageType": "reactionMessage",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-delivered" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "DELIVERED",
+      },
+      "event": "messages.update",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "DELIVERED",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-failed" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "FAILED",
+      },
+      "event": "messages.update",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "FAILED",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-read" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "READ",
+      },
+      "event": "messages.update",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "READ",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-sent" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "SENT",
+      },
+      "event": "messages.update",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "SENT",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-unknown-wamid" 1`] = `
+{
+  "events": [],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "sticker" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.STICKER0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "stickerMessage": {
+            "animated": false,
+            "id": "3234567890123456",
+            "mime_type": "image/webp",
+            "sha256": "d1946ac92492d2347c6235b4d2611186",
+          },
+        },
+        "messageTimestamp": 1754870580,
+        "messageType": "stickerMessage",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "template-status-update" 1`] = `
+{
+  "events": [],
+  "phoneNumberAfter": null,
+  "thrown": [
+    "TypeError: Cannot read properties of undefined (reading '0')",
+  ],
+  "writes": [],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "text" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "contextInfo": undefined,
+        "instanceId": "inst_golden_0001",
+        "key": {
+          "fromMe": false,
+          "id": "wamid.TEXT0001",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+        },
+        "message": {
+          "conversation": "Bom dia, gostaria de saber sobre o pedido.",
+        },
+        "messageTimestamp": 1754870400,
+        "messageType": "conversation",
+        "pushName": "Ana Souza",
+        "source": "unknown",
+      },
+      "event": "messages.upsert",
+    },
+    {
+      "data": {
+        "instanceId": "inst_golden_0001",
+        "pushName": "Ana Souza",
+        "remoteJid": "5511987654321",
+      },
+      "event": "contacts.upsert",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "contextInfo": undefined,
+          "instanceId": "inst_golden_0001",
+          "key": {
+            "fromMe": false,
+            "id": "wamid.TEXT0001",
+            "remoteJid": "5511987654321@s.whatsapp.net",
+          },
+          "message": {
+            "conversation": "Bom dia, gostaria de saber sobre o pedido.",
+          },
+          "messageTimestamp": 1754870400,
+          "messageType": "conversation",
+          "pushName": "Ana Souza",
+          "source": "unknown",
+        },
+      },
+      "model": "message",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "instanceId": "inst_golden_0001",
+          "pushName": "Ana Souza",
+          "remoteJid": "5511987654321",
+        },
+      },
+      "model": "contact",
+      "op": "create",
+    },
+  ],
+}
+`;

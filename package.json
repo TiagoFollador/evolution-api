@@ -1,15 +1,19 @@
 {
-  "name": "evolution-api",
-  "version": "2.3.7",
-  "description": "Rest api for communication with WhatsApp",
+  "name": "nexo-api",
+  "version": "0.1.0",
+  "description": "Meta Tech Provider messaging gateway for WhatsApp Cloud API, Instagram Direct and Messenger",
   "main": "./dist/main.js",
   "type": "commonjs",
+  "engines": {
+    "node": ">=20 <25"
+  },
   "scripts": {
     "build": "tsc --noEmit && tsup",
     "start": "tsx ./src/main.ts",
     "start:prod": "node dist/main",
     "dev:server": "tsx watch ./src/main.ts",
-    "test": "tsx watch ./test/all.test.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint --fix --ext .ts src",
     "lint:check": "eslint --ext .ts src",
     "commit": "cz",
@@ -24,33 +28,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EvolutionAPI/evolution-api.git"
+    "url": "git+https://github.com/TiagoFollador/evolution-api.git"
   },
   "keywords": [
-    "chat",
-    "communication",
-    "message",
-    "send message",
-    "whatsapp",
-    "js-whatsapp",
-    "whatsapp-api",
-    "whatsapp-web",
-    "whatsapp",
-    "whatsapp-chat",
-    "whatsapp-group",
-    "automation",
-    "multi-device",
-    "bot"
+    "messaging",
+    "gateway",
+    "meta",
+    "tech-provider",
+    "whatsapp-cloud-api",
+    "instagram-direct",
+    "messenger",
+    "webhook",
+    "multi-tenant"
   ],
   "author": {
-    "name": "Davidson Gomes",
-    "email": "contato@evolution-api.com"
+    "name": "Tiago Follador",
+    "email": "tiagofollador97@gmail.com"
   },
-  "license": "Apache-2.0",
+  "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/EvolutionAPI/evolution-api/issues"
+    "url": "https://github.com/TiagoFollador/evolution-api/issues"
   },
-  "homepage": "https://github.com/EvolutionAPI/evolution-api#readme",
+  "homepage": "https://github.com/TiagoFollador/evolution-api#readme",
   "lint-staged": {
     "src/**/*.{ts,js}": [
       "eslint --fix"
@@ -87,10 +86,10 @@
     "eventemitter2": "^6.4.9",
     "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
+    "fetch-socks": "^1.3.2",
     "fluent-ffmpeg": "^2.1.3",
     "form-data": "^4.0.1",
     "https-proxy-agent": "^7.0.6",
-    "fetch-socks": "^1.3.2",
     "i18next": "^23.7.19",
     "jimp": "^1.6.0",
     "json-schema": "^0.4.0",
@@ -153,6 +152,7 @@
     "prettier": "^3.4.2",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.9"
   }
 }

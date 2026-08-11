@@ -1,10 +1,10 @@
 name: Check Code Quality
 
-on: 
+on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, 'nexo/**' ]
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, 'nexo/**' ]
 
 jobs:
   check-lint-and-build:
@@ -37,6 +37,13 @@ jobs:
 
     - name: Generate Prisma client
       run: npm run db:generate
+      env:
+        DATABASE_PROVIDER: postgresql
 
     - name: Check build
       run: npm run build
+
+    # Golden-file suite: pins the Meta channel's current database writes and
+    # outbound events so the Nexo refactor phases cannot change them silently.
+    - name: Run tests
+      run: npm test

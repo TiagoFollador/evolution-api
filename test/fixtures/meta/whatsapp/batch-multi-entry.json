@@ -1,0 +1,66 @@
+{
+  "_comment": "Dois entries, cada um com uma mensagem de um contato DIFERENTE. connectToWhatsapp só lê entry[0], e meta.controller.ts dispara os entries com forEach(async …) sem await. Trava a race de atribuição do campo mutável this.phoneNumber.",
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ana Souza", "phone": "5511987654321" },
+                "wa_id": "5511987654321"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5511987654321",
+                "id": "wamid.BATCH0001",
+                "timestamp": "1754871060",
+                "type": "text",
+                "text": { "body": "mensagem da Ana" }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Bruno Lima", "phone": "5521999998888" },
+                "wa_id": "5521999998888"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5521999998888",
+                "id": "wamid.BATCH0002",
+                "timestamp": "1754871061",
+                "type": "text",
+                "text": { "body": "mensagem do Bruno" }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "contacts": [
+              {
+                "profile": { "name": "Ana Souza", "phone": "5511987654321" },
+                "wa_id": "5511987654321"
+              }
+            ],
+            "messages": [
+              {
+                "from": "5511987654321",
+                "id": "wamid.LOCATION0001",
+                "timestamp": "1754870640",
+                "type": "location",
+                "location": {
+                  "latitude": -23.55052,
+                  "longitude": -46.633308,
+                  "name": "Praça da Sé",
+                  "address": "Praça da Sé - Sé, São Paulo - SP"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
