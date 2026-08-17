@@ -5,6 +5,8 @@ process.env.DATABASE_PROVIDER ??= 'postgresql';
 process.env.DATABASE_CONNECTION_URI ??= 'postgresql://nexo:nexo@127.0.0.1:5432/nexo_test?schema=public';
 process.env.DATABASE_CONNECTION_CLIENT_NAME ??= 'nexo_test';
 process.env.AUTHENTICATION_API_KEY ??= 'test-global-apikey';
+process.env.WA_BUSINESS_APP_SECRET ??= 'test-app-secret';
+process.env.WA_BUSINESS_TOKEN_WEBHOOK ??= 'test-verify-token';
 process.env.CACHE_REDIS_ENABLED ??= 'false';
 process.env.CACHE_LOCAL_ENABLED ??= 'false';
 process.env.CHATWOOT_ENABLED ??= 'false';

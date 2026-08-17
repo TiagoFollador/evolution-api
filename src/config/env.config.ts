@@ -63,6 +63,7 @@ export type Websocket = {
 };
 
 export type WaBusiness = {
+  APP_SECRET: string;
   TOKEN_WEBHOOK: string;
   URL: string;
   VERSION: string;
@@ -301,7 +302,9 @@ export class ConfigService {
         ALLOWED_HOSTS: process.env?.WEBSOCKET_ALLOWED_HOSTS,
       },
       WA_BUSINESS: {
-        TOKEN_WEBHOOK: process.env.WA_BUSINESS_TOKEN_WEBHOOK || 'evolution',
+        // Sem default: os dois segredos abaixo são fail-closed. Vazio fecha o webhook.
+        APP_SECRET: process.env.WA_BUSINESS_APP_SECRET || '',
+        TOKEN_WEBHOOK: process.env.WA_BUSINESS_TOKEN_WEBHOOK || '',
         URL: process.env.WA_BUSINESS_URL || 'https://graph.facebook.com',
         VERSION: process.env.WA_BUSINESS_VERSION || 'v18.0',
         LANGUAGE: process.env.WA_BUSINESS_LANGUAGE || 'en',

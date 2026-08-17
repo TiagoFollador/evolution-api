@@ -2,6 +2,7 @@
 import '@utils/instrumentSentry';
 
 // Now import other modules
+import { RawBodyRequest } from '@api/guards/meta-signature.guard';
 import { PrismaRepository } from '@api/repository/repository.service';
 import { HttpStatus, router } from '@api/routes/index.router';
 import { eventManager, waMonitor } from '@api/server.module';
@@ -27,6 +28,21 @@ async function bootstrap() {
 
   const prismaRepository = new PrismaRepository(configService);
   await prismaRepository.onModuleInit();
+
+  // Precisa vir ANTES dos parsers globais: o body-parser faz short-circuit
+  // quando req.body já existe, então este parse é o que vale para o webhook e o
+  // json() global abaixo vira no-op nessa rota. Um `verify` no parser global
+  // reteria um Buffer de até 136mb em toda requisição do processo, só para que
+  // uma rota pudesse ler o corpo cru.
+  app.use(
+    '/webhook/meta',
+    json({
+      limit: '1mb',
+      verify: (req, _res, buf) => {
+        (req as RawBodyRequest).rawBody = buf;
+      },
+    }),
+  );
 
   app.use(
     cors({
