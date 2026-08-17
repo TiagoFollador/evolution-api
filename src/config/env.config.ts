@@ -306,7 +306,7 @@ export class ConfigService {
         APP_SECRET: process.env.WA_BUSINESS_APP_SECRET || '',
         TOKEN_WEBHOOK: process.env.WA_BUSINESS_TOKEN_WEBHOOK || '',
         URL: process.env.WA_BUSINESS_URL || 'https://graph.facebook.com',
-        VERSION: process.env.WA_BUSINESS_VERSION || 'v18.0',
+        VERSION: process.env.WA_BUSINESS_VERSION || 'v23.0',
         LANGUAGE: process.env.WA_BUSINESS_LANGUAGE || 'en',
       },
       LOG: {
