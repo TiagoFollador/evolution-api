@@ -125,7 +125,12 @@ export class BusinessStartupService extends ChannelStartupService {
     try {
       this.eventHandler(content);
 
-      this.phoneNumber = createJid(content.messages ? content.messages[0].from : content.statuses[0]?.recipient_id);
+      // Um payload de status de template não traz `messages` nem `statuses`, e
+      // createJid(undefined) também lança — daí o guard antes de atribuir.
+      const from = content.messages?.[0]?.from ?? content.statuses?.[0]?.recipient_id;
+      if (from) {
+        this.phoneNumber = createJid(from);
+      }
     } catch (error) {
       this.logger.error(error);
       throw new InternalServerErrorException(error?.toString());
@@ -656,33 +661,33 @@ export class BusinessStartupService extends ChannelStartupService {
           });
         }
 
+        // O lookup buscava pelo jid completo enquanto a gravação usava o número
+        // cru, então nunca casava. Com @@unique([remoteJid, instanceId]) no
+        // Contact, isso fazia toda mensagem após a primeira violar a constraint.
+        // Derivar do payload, e não de this.phoneNumber, também tira o caminho
+        // do contato da dependência do estado mutável.
+        const contactJid = createJid(received.contacts[0].profile.phone);
+
+        if (contactJid === 'status@broadcast') {
+          return;
+        }
+
         const contact = await this.prismaRepository.contact.findFirst({
-          where: { instanceId: this.instanceId, remoteJid: key.remoteJid },
+          where: { instanceId: this.instanceId, remoteJid: contactJid },
         });
 
         const contactRaw: any = {
-          remoteJid: received.contacts[0].profile.phone,
+          remoteJid: contactJid,
           pushName,
           // profilePicUrl: '',
           instanceId: this.instanceId,
         };
 
-        if (contactRaw.remoteJid === 'status@broadcast') {
-          return;
-        }
-
         if (contact) {
-          const contactRaw: any = {
-            remoteJid: received.contacts[0].profile.phone,
-            pushName,
-            // profilePicUrl: '',
-            instanceId: this.instanceId,
-          };
-
           this.sendDataWebhook(Events.CONTACTS_UPDATE, contactRaw);
 
           await this.prismaRepository.contact.updateMany({
-            where: { remoteJid: contact.remoteJid },
+            where: { instanceId: this.instanceId, remoteJid: contactJid },
             data: contactRaw,
           });
           return;
@@ -690,7 +695,7 @@ export class BusinessStartupService extends ChannelStartupService {
 
         this.sendDataWebhook(Events.CONTACTS_UPSERT, contactRaw);
 
-        this.prismaRepository.contact.create({
+        await this.prismaRepository.contact.create({
           data: contactRaw,
         });
       }
@@ -701,8 +706,10 @@ export class BusinessStartupService extends ChannelStartupService {
             remoteJid: this.phoneNumber,
             fromMe: this.phoneNumber === received.metadata.phone_number_id,
           };
+          // `continue`, nunca `return`: um item ignorado ou desconhecido não pode
+          // descartar o resto do lote de status.
           if (settings?.groups_ignore && key.remoteJid.includes('@g.us')) {
-            return;
+            continue;
           }
           if (key.remoteJid !== 'status@broadcast' && !key?.remoteJid?.match(/(:\d+)/)) {
             const findMessage = await this.prismaRepository.message.findFirst({
@@ -716,7 +723,7 @@ export class BusinessStartupService extends ChannelStartupService {
             });
 
             if (!findMessage) {
-              return;
+              continue;
             }
 
             if (item.message === null && item.status === undefined) {
@@ -736,7 +743,7 @@ export class BusinessStartupService extends ChannelStartupService {
                 data: message,
               });
 
-              return;
+              continue;
             }
 
             const message: any = {

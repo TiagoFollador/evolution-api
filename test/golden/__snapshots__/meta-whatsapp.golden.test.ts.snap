@@ -62,7 +62,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -75,7 +75,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -111,7 +111,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -146,7 +146,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -182,7 +182,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -217,7 +217,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -258,7 +258,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -298,7 +298,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -345,7 +345,7 @@ END:VCARD",
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -391,7 +391,7 @@ END:VCARD",
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -432,7 +432,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -445,7 +445,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -486,7 +486,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -526,7 +526,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -567,7 +567,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -607,7 +607,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -648,7 +648,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -688,7 +688,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -765,6 +765,71 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
           "participant": "5511987654321@s.whatsapp.net",
           "remoteJid": "5511987654321@s.whatsapp.net",
           "status": "FAILED",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
+}
+`;
+
+exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-mixed-known-unknown" 1`] = `
+{
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "SENT",
+      },
+      "event": "messages.update",
+    },
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0002",
+        "messageId": "msg_known_0002",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "READ",
+      },
+      "event": "messages.update",
+    },
+  ],
+  "phoneNumberAfter": "5511987654321@s.whatsapp.net",
+  "thrown": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "SENT",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0002",
+          "messageId": "msg_known_0002",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "READ",
         },
       },
       "model": "messageUpdate",
@@ -852,10 +917,66 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
 
 exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes and events for "status-unknown-wamid" 1`] = `
 {
-  "events": [],
+  "events": [
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0001",
+        "messageId": "msg_known_0001",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "DELIVERED",
+      },
+      "event": "messages.update",
+    },
+    {
+      "data": {
+        "fromMe": false,
+        "instanceId": "inst_golden_0001",
+        "keyId": "wamid.KNOWN0002",
+        "messageId": "msg_known_0002",
+        "participant": "5511987654321@s.whatsapp.net",
+        "remoteJid": "5511987654321@s.whatsapp.net",
+        "status": "READ",
+      },
+      "event": "messages.update",
+    },
+  ],
   "phoneNumberAfter": "5511987654321@s.whatsapp.net",
   "thrown": [],
-  "writes": [],
+  "writes": [
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0001",
+          "messageId": "msg_known_0001",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "DELIVERED",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+    {
+      "args": {
+        "data": {
+          "fromMe": false,
+          "instanceId": "inst_golden_0001",
+          "keyId": "wamid.KNOWN0002",
+          "messageId": "msg_known_0002",
+          "participant": "5511987654321@s.whatsapp.net",
+          "remoteJid": "5511987654321@s.whatsapp.net",
+          "status": "READ",
+        },
+      },
+      "model": "messageUpdate",
+      "op": "create",
+    },
+  ],
 }
 `;
 
@@ -889,7 +1010,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -902,7 +1023,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",
@@ -916,9 +1037,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
 {
   "events": [],
   "phoneNumberAfter": null,
-  "thrown": [
-    "TypeError: Cannot read properties of undefined (reading '0')",
-  ],
+  "thrown": [],
   "writes": [],
 }
 `;
@@ -949,7 +1068,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
       "data": {
         "instanceId": "inst_golden_0001",
         "pushName": "Ana Souza",
-        "remoteJid": "5511987654321",
+        "remoteJid": "5511987654321@s.whatsapp.net",
       },
       "event": "contacts.upsert",
     },
@@ -984,7 +1103,7 @@ exports[`Meta WhatsApp channel — recorded behaviour > produces stable writes a
         "data": {
           "instanceId": "inst_golden_0001",
           "pushName": "Ana Souza",
-          "remoteJid": "5511987654321",
+          "remoteJid": "5511987654321@s.whatsapp.net",
         },
       },
       "model": "contact",

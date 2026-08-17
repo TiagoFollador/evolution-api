@@ -1,0 +1,41 @@
+{
+  "_comment": "Lote com o wamid desconhecido NO MEIO de dois conhecidos. Complementa status-unknown-wamid.json, onde o desconhecido vem primeiro: aqui o primeiro item já foi processado quando o item ruim aparece, então o snapshot prova que o laço retoma em vez de abortar. Com `return` no lugar de `continue`, o terceiro status desaparece silenciosamente.",
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "102290129340398",
+      "changes": [
+        {
+          "field": "messages",
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "15550001111",
+              "phone_number_id": "109876543210987"
+            },
+            "statuses": [
+              {
+                "id": "wamid.KNOWN0001",
+                "status": "sent",
+                "timestamp": "1754872000",
+                "recipient_id": "5511987654321"
+              },
+              {
+                "id": "wamid.UNKNOWN9999",
+                "status": "delivered",
+                "timestamp": "1754872001",
+                "recipient_id": "5511987654321"
+              },
+              {
+                "id": "wamid.KNOWN0002",
+                "status": "read",
+                "timestamp": "1754872002",
+                "recipient_id": "5511987654321"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
