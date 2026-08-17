@@ -1,7 +1,7 @@
 services:
   api:
-    container_name: evolution_api
-    image: evolution/api:local
+    container_name: nexo_api
+    image: nexo/api:local
     build: .
     restart: always
     ports:
@@ -14,16 +14,6 @@ services:
       - .env
     expose:
       - 8080
-
-  frontend:
-    container_name: evolution_frontend
-    image: evolution/manager:local
-    build: ./evolution-manager-v2
-    restart: always
-    ports:
-      - "3000:80"
-    networks:
-      - evolution-net
 
 volumes:
   evolution_instances:
